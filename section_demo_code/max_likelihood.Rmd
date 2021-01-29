@@ -1,0 +1,40 @@
+---
+title: "maximum likelihood"
+author: "JE Hug"
+date: "1/29/2021"
+output: html_document
+---
+
+
+
+```{r, message = FALSE}
+library(ggplot2)
+# treat this parameter as unknown
+
+mu <- 5
+
+# generate data
+
+dat <- rnorm(100,mean = mu)
+
+# define a function that can take in a vector input and return the log likelihood
+# at every value inputted
+
+log_likely_vec <- function(theta){
+  map_dbl(.x= theta , ~sum(dnorm(x=dat,mean=.x,sd = 1,log = TRUE)))
+}
+
+# find the TRUE MLE
+
+mle_val <- mean(dat)
+
+ggplot()+
+  xlim(0,10)+
+  geom_function(fun = log_likely)+
+  labs(x= "mu value", y= " log likelihood", title="log likelihood of normal density true mean in red, MLE in blue")+
+  geom_vline(xintercept=5, col ="red")+
+  geom_vline(xintercept = mle_val$maximum, col = "blue")
+
+  
+```
+
