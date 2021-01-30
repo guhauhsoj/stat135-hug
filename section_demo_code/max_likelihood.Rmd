@@ -10,6 +10,7 @@ output: html_document
 ```{r, message = FALSE}
 
 library(ggplot2)
+library(purrr)
 # treat this parameter as unknown
 
 mu <- 5
@@ -36,8 +37,6 @@ ggplot()+
        title="log likelihood of normal density true mean in red, MLE in blue")+
   geom_vline(xintercept=5, col ="red")+
   geom_vline(xintercept = mle_val, col = "blue")
-
-
 
   
 ```
