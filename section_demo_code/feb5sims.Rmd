@@ -1,0 +1,38 @@
+---
+title: "feb5sims"
+author: "JE Hug"
+date: "2/5/2021"
+output: html_document
+---
+
+```{r, message = F}
+library(tidyverse)
+```
+
+
+```{r}
+# our actual parameter
+lambda <- 1.5
+sims <- replicate(10000,1/mean(rexp(n = 1000,rate = lambda)))
+
+
+# the mean from replications
+mean(sims)
+# the variance from replications
+var(sims)
+# the theoretical variance
+lambda^2 / 1000
+```
+
+
+```{r}
+
+data.frame(x=sims) %>% ggplot(aes(x=sims,y=..density..))+
+  geom_histogram()+
+  theme_classic()+
+  labs(x= "Values of 1/sample mean", title= "Simulating distribution of 1/sample mean of exponential")
+
+
+```
+
+
