@@ -1,0 +1,31 @@
+---
+title: "feb26"
+author: "JE Hug"
+date: "2/23/2021"
+output: html_document
+---
+
+```{r, message = F}
+
+library(ggplot2)
+library(magrittr)
+
+
+power_function <- function(p , n){
+  1- pnorm((60-n*p)/sqrt(n*p*(1-p)))+ pnorm((40-n*p)/sqrt(n*p*(1-p)))
+}
+
+
+n <- 100
+ggplot()+
+  stat_function(fun = power_function, args = list(n=n))+
+  labs(y= "power", x= "value of p", title= paste0("Power of test with n = ", as.character(n)))
+ 
+ 
+
+```
+
+
+
+
+
